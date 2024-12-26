@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>view js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}
+      <p>{{ isItTrue }}</p>
+      <p>{{ myArray[1] }}</p>
+      <p>Hello Nama saya {{ myObject.name }} umur saya {{ myObject.age }}</p>
+      <p>{{ greeting }}</p>
+      <p>{{ myFunc() }}</p>
+    </div>
+    <script>
+      // const { createApp } = Vue;
+      //   createApp({
+      //     data() {
+      //       return {
+      //         message: "hello World",
+      //         isItTrue: false,
+      //         myArray: ["alwi", "alya", "alfiah"],
+      //         myObject: { name: "alwi", age: 20 },
+      //         greeting: "today is" + new Date().toLocaleString(),
+      //         myFunc: () => {
+      //           return "hello from function";
+      //         },
+      //       };
+      //     },
+      //   }).mount("#app");
+      const App = {
+        data() {
+          return {
+            message: "hello World",
+          };
+        },
+        methods: {
+          myFunc() {
+            return "hello from function";
+          },
+        },
+      };
+      Vue.CreateApp(App).mount("#app");
+    </script>
+  </body>
+</html>

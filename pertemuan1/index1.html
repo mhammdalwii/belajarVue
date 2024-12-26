@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>view</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p v-text="message"></p>
+      <p v-html="myHtml"></p>
+      <a :href="myLink">go To link</a>
+    </div>
+    <script>
+      const App = {
+        data() {
+          return {
+            message: "hello World",
+            isItTrue: true,
+            myHtml: "<h1>hello</h1>",
+            myLink: "https://www.google.com",
+            myArray: ["alwi", "alya", "alfiah"],
+          };
+        },
+        methods: {
+          myFunc() {
+            const randomArr = this.myArray[Math.floor(Math.random() * this.myArray.length)];
+
+            if (this.isItTrue) {
+              return this.myArray[0];
+            }
+            return randomArr;
+          },
+        },
+      };
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
