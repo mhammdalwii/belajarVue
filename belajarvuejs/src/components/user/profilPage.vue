@@ -18,11 +18,34 @@
 <script>
 export default {
   props: {
-    aka: String,
-    lastname: String,
-    userAge: Number,
+    aka: {
+      type: String,
+      required: true,
+      default: 'N/A',
+    },
+    lastname: {
+      type: String,
+      validator(value) {
+        if (value === 'Alwi') {
+          return true
+        } else {
+          return false
+        }
+      },
+    },
+    userAge: [Number, String],
     userParents: Object,
     updateAge: Function,
+  },
+  emits: {
+    'update-lastname': function (lastname) {
+      if (lastname === 'alfiah') {
+        return true
+      } else {
+        alert('Lastname harus alfiah')
+        return false
+      }
+    },
   },
   data() {
     return {
