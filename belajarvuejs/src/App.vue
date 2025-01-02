@@ -37,6 +37,7 @@ export default {
       },
     }
   },
+  provide: {},
   methods: {
     changeName() {
       this.name = 'wial'
