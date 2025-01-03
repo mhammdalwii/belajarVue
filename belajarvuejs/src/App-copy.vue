@@ -1,22 +1,29 @@
 <template>
   <div>
     <appHeader></appHeader>
-    <comp-cars></comp-cars>
+    <div class="container">
+      <compBrand>
+        <ul>
+          <li v-for="(brand, index) in brands" :key="index">{{ brand }}</li>
+        </ul>
+      </compBrand>
+    </div>
     <appFooter></appFooter>
   </div>
 </template>
 <script>
 import appHeader from './components/generals/appHeader.vue'
 import appFooter from './components/generals/appFooter.vue'
-import compCars from './components/cars/indexCar.vue'
+import compBrand from './components/cars/brandCar.vue'
 export default {
   components: {
     appHeader,
+    compBrand,
     appFooter,
-    compCars,
   },
   data() {
     return {
+      brands: ['honda', 'toyota', 'ferrari'],
       cars: [
         {
           model: 'jazz',
