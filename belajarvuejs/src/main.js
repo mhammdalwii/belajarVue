@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import App from './App-copy.vue'
+import App from './App-3.vue'
 import Header from './components/generals/appHeader.vue'
 import Footer from './components/generals/appFooter.vue'
 const app = createApp(App)

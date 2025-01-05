@@ -2,7 +2,7 @@
   <div>
     <appHeader></appHeader>
     <div class="container">
-      <compLife></compLife>
+      <compLife v-if="showlt"></compLife>
     </div>
     <app-footer></app-footer>
   </div>
@@ -15,11 +15,28 @@ import compLife from './components/life/index-life.vue'
 export default {
   components: {
     appHeader,
-    appFooter,
     compLife,
+    appFooter,
   },
   data() {
-    return {}
+    return {
+      showlt: true,
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.showlt = false
+    }, 5000)
   },
 }
 </script>
+<style>
+body {
+  padding: 0;
+  margin: 0;
+}
+.container {
+  min-height: 80vh;
+  box-sizing: border-box;
+}
+</style>
