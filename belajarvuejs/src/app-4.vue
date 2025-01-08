@@ -10,6 +10,7 @@
       <keep-alive include="comp-Orange,comp-Grape">
         <component :is="activeComp"></component>
       </keep-alive>
+      <div id="dialogIs"></div>
     </div>
     <app-footer></app-footer>
   </div>
