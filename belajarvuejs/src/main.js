@@ -4,16 +4,15 @@ import Header from './components/generals/appHeader.vue'
 import Footer from './components/generals/appFooter.vue'
 
 const app = createApp(App)
-app.directive('cusDir', {
+app.directive('custDir', {
   beforeMount(el, binding) {
-    el.innerHTML = binding.value
-    el.style.color = binding.value
     console.log(binding)
+    el.style.color = binding.modifiers.blue ? 'blue' : 'red'
+    el.style.fontSize = binding.modifiers.small ? '15px' : '30px'
+    el.innerHTML = binding.value
   },
 })
 
 app.component('appHeader', Header)
 app.component('appFooter', Footer)
 app.mount('#app')
-
-createApp(App).mount('#app')
