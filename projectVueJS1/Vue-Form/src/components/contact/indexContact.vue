@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="checkForm()">
     <div class="row">
       <div class="col-xl-12">
         <h1>Contact</h1>
@@ -59,6 +59,14 @@
           </div>
         </div>
         <button class="btn btn-primary mt-2">Submit</button>
+        <div v-if="this.errors.length" class="alert alert-danger mt-2">
+          <p>please fix this error</p>
+          <ul>
+            <li v-for="error in erros" :key="error">
+              {{ error }}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </form>
@@ -68,6 +76,7 @@
 export default {
   data() {
     return {
+      errors: [],
       formData: {
         name: "",
         email: "",
@@ -82,8 +91,28 @@ export default {
     };
   },
   methods: {
+    checkForm() {
+      this.errors = [];
+
+      if (!this.formData.name) {
+        this.errors.push("Name required");
+      }
+      if (!this.formData.email) {
+        this.errors.push("Email required");
+      } else if (!this.validEmail(this.formData.email)) {
+        this.errors.push("Email invalid");
+      }
+      if (!this.errors.length) {
+        this.submitForm();
+      }
+    },
     submitForm() {
       console.log(this.formData);
+    },
+
+    validEmail(email) {
+      const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+      return re.test(email);
     },
     getData() {
       this.formData.name = "New Alwi";
