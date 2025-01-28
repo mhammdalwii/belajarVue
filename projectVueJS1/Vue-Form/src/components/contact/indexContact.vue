@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="checkForm()">
+  <form @submit="onSubmit">
     <div class="row">
       <div class="col-xl-12">
         <h1>Contact</h1>
@@ -116,6 +116,9 @@ export default {
     },
     getData() {
       this.formData.name = "New Alwi";
+    },
+    onSubmit(values) {
+      console.log(values);
     },
   },
 };
