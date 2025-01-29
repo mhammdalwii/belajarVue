@@ -1,5 +1,5 @@
 <template>
-  <form @submit="onSubmit">
+  <Form @submit.prevent="checkForm">
     <div class="row">
       <div class="col-xl-12">
         <h1>Contact</h1>
@@ -50,6 +50,16 @@
           </div>
 
           <div class="form-group">
+            <label for="message">Message</label>
+            <Field name="message" :rules="validateMessage" v-slot="{ field, errors, errorMessage }">
+              <textarea id="message" rows="3" class="form-control" :class="{ 'vee-validate': errors.length !== 0 }" v-bind="field"></textarea>
+              <ErrorMessage>
+                <div class="alert alert-danger" role="alert" v-if="errors.length !== 0">{{ errorMessage }}</div>
+              </ErrorMessage>
+            </Field>
+          </div>
+
+          <div class="form-group">
             <label for="country">Country</label>
             <select class="form-control" id="country" v-model="formData.country">
               <option v-for="(country, index) in listCountry" :key="index + country">
@@ -69,11 +79,17 @@
         </div>
       </div>
     </div>
-  </form>
+  </Form>
 </template>
 
 <script>
+import { Field, Form, ErrorMessage } from "vee-validate";
 export default {
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
   data() {
     return {
       errors: [],
@@ -114,11 +130,15 @@ export default {
       const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
       return re.test(email);
     },
+
+    validateMessage(value) {
+      if (!value) {
+        return "Message required";
+      }
+    },
+
     getData() {
       this.formData.name = "New Alwi";
-    },
-    onSubmit(values) {
-      console.log(values);
     },
   },
 };
